@@ -1,0 +1,30 @@
+######################
+# Node
+######################
+/node/**
+web/node_modules
+web/dist
+web/coverage
+version.json
+/**/logs
+
+HELP.md
+.maven
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+server/logs
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### VS Code ###
+.vscode/
+
