@@ -18,7 +18,7 @@ import com.escola.ti.avaliacao.service.DisciplinaService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/disciplina")
+@RequestMapping("/api/disciplina")
 @RequiredArgsConstructor
 public class DisciplinaResource {
 
