@@ -2,9 +2,6 @@
 # Node
 ######################
 /node/**
-web/node_modules
-web/dist
-web/coverage
 version.json
 /**/logs
 
