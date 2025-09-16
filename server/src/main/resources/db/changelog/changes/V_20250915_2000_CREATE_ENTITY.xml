@@ -15,7 +15,7 @@
             <column name="id" type="int">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="curso_pkey"/>
             </column>
-            <column name="nome" type="varchar(255)"/>
+            <column name="nome" type="varchar(50)"/>
             <column name="data_inicio" type="datetime"/>
         </createTable>
     </changeSet>
@@ -31,7 +31,7 @@
             <column name="id" type="int">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="disciplina_pkey"/>
             </column>
-            <column name="nome" type="varchar(255)"/>
+            <column name="nome" type="varchar(50)"/>
             <column name="curso_id" type="int"/>
         </createTable>
 

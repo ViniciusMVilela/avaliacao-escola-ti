@@ -1,6 +1,6 @@
 package com.escola.ti.avaliacao.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -26,8 +25,8 @@ public class Curso {
     private String nome;
 
     private Integer cargaHoraria;
-    //TODO: alterar para date
-    private LocalDateTime dataInicio;
+
+    private LocalDate dataInicio;
 
     @OneToMany(mappedBy = "curso")
     private List<Disciplina> disciplinas;
