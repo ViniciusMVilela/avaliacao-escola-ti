@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="form-container">
+    <h2>{{ isEdit ? 'Editar' : 'Nova' }} Disciplina</h2>
+
+    <form [formGroup]="disciplinaForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nome">Nome da Disciplina *</label>
+        <input
+          type="text"
+          id="nome"
+          formControlName="nome"
+          class="form-control"
+          [class.error]="disciplinaForm.get('nome')?.invalid && disciplinaForm.get('nome')?.touched">
+        <div *ngIf="disciplinaForm.get('nome')?.invalid && disciplinaForm.get('nome')?.touched" class="error-message">
+          <span *ngIf="disciplinaForm.get('nome')?.errors?.['required']">Nome é obrigatório</span>
+          <span *ngIf="disciplinaForm.get('nome')?.errors?.['maxlength']">Nome deve ter no máximo 50 caracteres</span>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="button"
+          class="btn-secondary"
+          (click)="goBack()">
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="btn-primary"
+          [disabled]="disciplinaForm.invalid || loading">
+          {{ loading ? 'Salvando...' : 'Salvar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

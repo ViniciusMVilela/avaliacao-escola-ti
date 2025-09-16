@@ -1,0 +1,49 @@
+<div>
+  <div>
+    <h2>Lista de Cursos</h2>
+    <button routerLink="/cursos/novo">
+      Novo Curso
+    </button>
+  </div>
+
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Carga Horária</th>
+          <th>Data Início</th>
+          <th>Disciplinas</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let curso of cursos">
+          <td>{{ curso.id }}</td>
+          <td>{{ curso.nome }}</td>
+          <td>{{ curso.cargaHoraria }}h</td>
+          <td>{{ curso.dataInicio | date:'dd/MM/yyyy' }}</td>
+          <td>{{ curso.disciplinas?.length || 0 }}</td>
+          <td>
+            <button
+              [routerLink]="['/cursos', curso.id, 'edit']">
+              Editar
+            </button>
+            <button
+              (click)="deleteCurso(curso.id!)">
+              Excluir
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="cursos.length === 0">
+      <p>Nenhum curso encontrado.</p>
+      <button routerLink="/cursos/novo">
+        Criar primeiro curso
+      </button>
+    </div>
+  </div>
+</div>

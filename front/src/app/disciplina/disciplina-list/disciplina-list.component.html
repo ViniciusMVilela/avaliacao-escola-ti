@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="header">
+    <h2>Lista de Disciplinas</h2>
+    <button class="btn-primary" routerLink="/disciplinas/novo">
+      Nova Disciplina
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let disciplina of disciplinas">
+          <td>{{ disciplina.id }}</td>
+          <td>{{ disciplina.nome }}</td>
+          <td class="actions">
+            <button
+              class="btn-secondary"
+              [routerLink]="['/disciplinas', disciplina.id, 'edit']">
+              Editar
+            </button>
+            <button
+              class="btn-danger"
+              (click)="deleteDisciplina(disciplina.id!)">
+              Excluir
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="disciplinas.length === 0" class="empty-state">
+      <p>Nenhuma disciplina encontrada.</p>
+      <button class="btn-primary" routerLink="/disciplinas/novo">
+        Criar primeira disciplina
+      </button>
+    </div>
+  </div>
+</div>
