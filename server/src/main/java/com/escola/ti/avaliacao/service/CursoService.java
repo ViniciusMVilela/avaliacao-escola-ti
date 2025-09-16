@@ -20,13 +20,16 @@ public class CursoService {
         return cursoRepository.findAll();
     }
 
+    public Curso getCurso(Long id) {
+        return cursoRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+    }
+
     public Curso save(Curso newCurso) {
         return this.cursoRepository.save(newCurso);
     }
 
     public Curso update(Long id, Curso updatedCurso) {
         final Curso curso = getCurso(id);
-
         updatedCurso.setId(curso.getId());
 
         return save(updatedCurso);
@@ -37,22 +40,16 @@ public class CursoService {
         cursoRepository.delete(curso);
     }
 
-    public Curso getCurso(Long id) {
-        return cursoRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
-    }
-
     public Curso addDisciplina(Long cursoId, Disciplina disciplina) {
         final Curso curso = getCurso(cursoId);
-
         curso.getDisciplinas().add(disciplina);
 
         return cursoRepository.saveAndFlush(curso);
 
     }
 
-    public Curso removeCurso(Long cursoId, Disciplina disciplina) {
+    public Curso removeDisciplina (Long cursoId, Disciplina disciplina) {
         final Curso curso = getCurso(cursoId);
-
         curso.getDisciplinas().remove(disciplina);
 
         return cursoRepository.saveAndFlush(curso);
