@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.escola.ti.avaliacao.domain.Curso;
 import com.escola.ti.avaliacao.domain.Disciplina;
 import com.escola.ti.avaliacao.repository.CursoRepository;
+import com.escola.ti.avaliacao.repository.DisciplinaRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class CursoService {
 
     private final CursoRepository cursoRepository;
+    private final DisciplinaRepository disciplinaRepository;
 
     public List<Curso> findAll() {
         return cursoRepository.findAll();
@@ -40,18 +42,25 @@ public class CursoService {
         cursoRepository.delete(curso);
     }
 
-    public Curso addDisciplina(Long cursoId, Disciplina disciplina) {
+    public Curso addDisciplina(Long cursoId, Disciplina disciplinaRequest) {
         final Curso curso = getCurso(cursoId);
-        curso.getDisciplinas().add(disciplina);
+        final Disciplina disciplina = disciplinaRepository.findById(disciplinaRequest.getId())
+            .orElseThrow(() -> new RuntimeException("Disciplina not found"));
 
-        return cursoRepository.saveAndFlush(curso);
+        disciplina.setCurso(curso);
+        disciplinaRepository.save(disciplina);
 
+        return getCurso(cursoId);
     }
 
-    public Curso removeDisciplina (Long cursoId, Disciplina disciplina) {
+    public Curso removeDisciplina(Long cursoId, Disciplina disciplinaRequest) {
         final Curso curso = getCurso(cursoId);
-        curso.getDisciplinas().remove(disciplina);
+        final Disciplina disciplina = disciplinaRepository.findById(disciplinaRequest.getId())
+            .orElseThrow(() -> new RuntimeException("Disciplina not found"));
 
-        return cursoRepository.saveAndFlush(curso);
+        disciplina.setCurso(null);
+        disciplinaRepository.save(disciplina);
+
+        return getCurso(cursoId);
     }
 }

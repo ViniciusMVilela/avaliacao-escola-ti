@@ -38,4 +38,8 @@ public class DisciplinaService {
         final Disciplina disciplina = getDisciplina(id);
         disciplinaRepository.delete(disciplina);
     }
+
+    public List<Disciplina> findDisponiveis() {
+        return disciplinaRepository.findByCursoIsNull();
+    }
 }

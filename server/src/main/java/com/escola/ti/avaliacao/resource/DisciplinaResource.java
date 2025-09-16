@@ -49,4 +49,9 @@ public class DisciplinaResource {
         disciplinaService.remove(id);
         return null;
     }
+
+    @GetMapping("/disponiveis")
+    public ResponseEntity<List<Disciplina>> findDisponiveis() {
+        return ResponseEntity.ok(disciplinaService.findDisponiveis());
+    }
 }

@@ -18,6 +18,7 @@
             </column>
             <column name="nome" type="varchar(50)"/>
             <column name="data_inicio" type="datetime"/>
+            <column name="carga_horaria" type="int"/>
         </createTable>
     </changeSet>
 

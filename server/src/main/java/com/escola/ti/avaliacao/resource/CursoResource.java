@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.escola.ti.avaliacao.domain.Curso;
+import com.escola.ti.avaliacao.domain.Disciplina;
 import com.escola.ti.avaliacao.service.CursoService;
 
 import lombok.RequiredArgsConstructor;
@@ -35,18 +36,28 @@ public class CursoResource {
     }
 
     @PostMapping
-    public ResponseEntity<Curso> create(@RequestBody Curso Curso) {
-        return ResponseEntity.ok(cursoService.save(Curso));
+    public ResponseEntity<Curso> create(@RequestBody Curso curso) {
+        return ResponseEntity.ok(cursoService.save(curso));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Curso> update(@PathVariable Long id, @RequestBody Curso Curso) {
-        return ResponseEntity.ok(cursoService.update(id, Curso));
+    public ResponseEntity<Curso> update(@PathVariable Long id, @RequestBody Curso curso) {
+        return ResponseEntity.ok(cursoService.update(id, curso));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         cursoService.delete(id);
         return null;
+    }
+
+    @PostMapping("/{id}/disciplinas")
+    public ResponseEntity<Curso> addDisciplina(@PathVariable Long id, @RequestBody Disciplina disciplina) {
+        return ResponseEntity.ok(cursoService.addDisciplina(id, disciplina));
+    }
+
+    @DeleteMapping("/{id}/disciplinas")
+    public ResponseEntity<Curso> removeDisciplina(@PathVariable Long id, @RequestBody Disciplina disciplina) {
+        return ResponseEntity.ok(cursoService.removeDisciplina(id, disciplina));
     }
 }
