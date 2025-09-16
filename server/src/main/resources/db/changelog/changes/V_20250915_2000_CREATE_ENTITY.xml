@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="CREATE_CURSO" author="vinicius.vilela">
+        <preConditions onFail="MARK_RAN" onFailMessage="A tabela Curso já existe">
+            <not>
+                <tableExists tableName="curso"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="curso">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="curso_pkey"/>
+            </column>
+            <column name="nome" type="varchar(255)"/>
+            <column name="data_inicio" type="datetime"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="CREATE_DISCIPLINA" author="vinicius.vilela">
+        <preConditions onFail="MARK_RAN" onFailMessage="A tabela disciplina já existe">
+            <not>
+                <tableExists tableName="disciplina"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="disciplina">
+            <column name="id" type="int">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="disciplina_pkey"/>
+            </column>
+            <column name="nome" type="varchar(255)"/>
+            <column name="curso_id" type="int"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="disciplina" baseColumnNames="curso_id" constraintName="curso_id_fk"
+                                 referencedTableName="curso"
+                                 referencedColumnNames="id"/>
+
+    </changeSet>
+
+
+</databaseChangeLog>

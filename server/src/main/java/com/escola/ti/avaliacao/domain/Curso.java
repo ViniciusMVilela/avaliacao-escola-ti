@@ -9,11 +9,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Curso {
@@ -25,7 +26,7 @@ public class Curso {
     private String nome;
 
     private Integer cargaHoraria;
-
+    //TODO: alterar para date
     private LocalDateTime dataInicio;
 
     @OneToMany(mappedBy = "curso")
