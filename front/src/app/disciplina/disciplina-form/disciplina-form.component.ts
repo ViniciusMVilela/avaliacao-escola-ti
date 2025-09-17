@@ -5,7 +5,6 @@ import { Disciplina } from '../../models/disciplina.models';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Curso } from '../../models/curso.models';
 import { DisciplinaService } from '../../service/disciplina.service';
-import { CursoService } from '../../service/curso.service';
 
 @Component({
   selector: 'app-disciplina-form',

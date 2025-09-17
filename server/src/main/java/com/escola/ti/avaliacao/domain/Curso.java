@@ -26,7 +26,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "disciplinas")
 @EqualsAndHashCode(of = "id")
 public class Curso {
 

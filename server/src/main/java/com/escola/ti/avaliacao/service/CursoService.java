@@ -1,6 +1,7 @@
 package com.escola.ti.avaliacao.service;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,20 @@ public class CursoService {
     }
 
     public Curso save(Curso newCurso) {
+        if (Objects.nonNull(newCurso.getDisciplinas()) && !newCurso.getDisciplinas().isEmpty()) {
+            List<Disciplina> disciplinasGerenciadas = newCurso.getDisciplinas().stream()
+                .map(disciplina -> {
+                    if (disciplina.getId() != null) {
+                        Disciplina disciplinaExistente = disciplinaRepository.findById(disciplina.getId())
+                            .orElseThrow(() -> new RuntimeException("Disciplina not found"));
+                        disciplinaExistente.setCurso(newCurso);
+                        return disciplinaExistente;
+                    }
+                    return disciplina;
+                })
+                .toList();
+            newCurso.setDisciplinas(disciplinasGerenciadas);
+        }
         return this.cursoRepository.save(newCurso);
     }
 

@@ -102,7 +102,10 @@ export class CursoFormComponent implements OnInit {
     if (this.cursoForm.valid) {
       this.loading = true;
 
-      const curso: Curso = this.cursoForm.value;
+      const curso: Curso = {
+        ...this.cursoForm.value,
+        disciplinas: this.disciplinasSelecionadas
+      };
 
       const operation = this.isEdit
         ? this.cursoService.update(this.cursoId!, curso)
