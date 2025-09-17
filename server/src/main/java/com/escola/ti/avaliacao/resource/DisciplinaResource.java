@@ -2,6 +2,7 @@ package com.escola.ti.avaliacao.resource;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +37,7 @@ public class DisciplinaResource {
 
     @PostMapping
     public ResponseEntity<Disciplina> create(@RequestBody Disciplina disciplina) {
-        return ResponseEntity.ok(disciplinaService.save(disciplina));
+        return ResponseEntity.status(HttpStatus.CREATED).body(disciplinaService.save(disciplina));
     }
 
     @PutMapping("/{id}")
@@ -47,7 +48,7 @@ public class DisciplinaResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         disciplinaService.remove(id);
-        return null;
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/disponiveis")
