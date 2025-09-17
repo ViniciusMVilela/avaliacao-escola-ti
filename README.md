@@ -6,4 +6,17 @@
 ###### PostgreSQL
 
 #### Subir APP
-##### Necessário criar banco de dados 'avaliacao' e schema 'avaliacao'
+
+##### Backend (Spring Boot)
+1. Necessário criar banco de dados 'avaliacao' e schema 'avaliacao'
+2. Configurar conexão com PostgreSQL no application.properties
+3. Executar: `./mvnw spring-boot:run` (na pasta server)
+
+##### Frontend (Angular)
+1. Instalar dependências: `npm install` (na pasta front)
+2. Executar: `npm start` (na pasta front)
+3. Acessar: http://localhost:4200
+
+##### Desenvolvimento
+- Backend roda na porta 8080
+- Frontend roda na porta 4200 com proxy para o backend
